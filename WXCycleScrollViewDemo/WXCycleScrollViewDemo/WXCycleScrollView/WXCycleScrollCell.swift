@@ -10,6 +10,7 @@ import UIKit
 
 class WXCycleScrollCell: UICollectionViewCell {
     var imageView:UIImageView?
+    var titleBackgroundView:UIView?
     var titleLabel:UILabel?
     
     override init(frame: CGRect) {
@@ -25,9 +26,12 @@ class WXCycleScrollCell: UICollectionViewCell {
         imageView = UIImageView.init(frame: bounds)
         contentView.addSubview(imageView!)
         
-        titleLabel = UILabel.init(frame: CGRect(x: 10, y: bounds.height - 60, width: bounds.width - 20, height: 40))
+        titleBackgroundView = UIView.init(frame: CGRect(x: 0, y: bounds.height - 60, width: bounds.width - 0, height: 40))
+        contentView.addSubview(titleBackgroundView!)
+        
+        titleLabel = UILabel.init(frame: CGRect(x: 0, y: 0, width: titleBackgroundView!.bounds.width - 0, height: titleBackgroundView!.bounds.height))
         titleLabel!.numberOfLines = 2
-        contentView.addSubview(titleLabel!)
+        titleBackgroundView!.addSubview(titleLabel!)
         
     }
 }

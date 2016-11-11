@@ -136,7 +136,7 @@ class WXCycleScrollView: UIView, UICollectionViewDelegate, UICollectionViewDataS
         let cell:WXCycleScrollCell! = collectionView.dequeueReusableCell(withReuseIdentifier: "WXCycleScrollCell", for: indexPath) as! WXCycleScrollCell
         cell.titleLabel?.textColor = titleColor ?? UIColor.white
         cell.titleLabel?.font = titleFont ?? UIFont.systemFont(ofSize: 16)
-        cell.titleLabel?.backgroundColor = titleBackgroundColor ?? UIColor.black.withAlphaComponent(0.1)
+        cell.titleBackgroundView?.backgroundColor = titleBackgroundColor ?? UIColor.black.withAlphaComponent(0.1)
         cell.titleLabel?.textAlignment = titleAlignment ?? .left
         
         let index:Int = indexPath.row % (self.titles?.count)!
