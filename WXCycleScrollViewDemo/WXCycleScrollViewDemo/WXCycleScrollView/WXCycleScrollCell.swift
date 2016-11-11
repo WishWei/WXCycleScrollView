@@ -26,11 +26,7 @@ class WXCycleScrollCell: UICollectionViewCell {
         contentView.addSubview(imageView!)
         
         titleLabel = UILabel.init(frame: CGRect(x: 10, y: bounds.height - 60, width: bounds.width - 20, height: 40))
-        titleLabel!.backgroundColor = UIColor.black.withAlphaComponent(0.1)
-        titleLabel!.textColor = UIColor.white
-        titleLabel!.font = UIFont.systemFont(ofSize: 16)
         titleLabel!.numberOfLines = 2
-        titleLabel?.textAlignment = .left
         contentView.addSubview(titleLabel!)
         
     }

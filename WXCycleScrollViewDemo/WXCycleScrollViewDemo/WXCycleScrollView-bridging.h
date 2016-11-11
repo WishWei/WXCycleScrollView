@@ -9,6 +9,6 @@
 #ifndef WXCycleScrollView_bridging_h
 #define WXCycleScrollView_bridging_h
 
-#import "UIImageView+WebCache.h"
+
 
 #endif /* WXCycleScrollView_bridging_h */

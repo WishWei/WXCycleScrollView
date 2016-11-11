@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import SDWebImage
 
 @objc protocol WXCycleScrollViewDelegate : NSObjectProtocol {
     //点击第index张图片
@@ -72,6 +72,11 @@ class WXCycleScrollView: UIView, UICollectionViewDelegate, UICollectionViewDataS
     var timer:Timer?
     weak var delegate: WXCycleScrollViewDelegate?
     
+    var titleColor:UIColor?
+    var titleFont:UIFont?
+    var titleBackgroundColor:UIColor?
+    var titleAlignment:NSTextAlignment?
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         configView()
@@ -129,6 +134,11 @@ class WXCycleScrollView: UIView, UICollectionViewDelegate, UICollectionViewDataS
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell:WXCycleScrollCell! = collectionView.dequeueReusableCell(withReuseIdentifier: "WXCycleScrollCell", for: indexPath) as! WXCycleScrollCell
+        cell.titleLabel?.textColor = titleColor ?? UIColor.white
+        cell.titleLabel?.font = titleFont ?? UIFont.systemFont(ofSize: 16)
+        cell.titleLabel?.backgroundColor = titleBackgroundColor ?? UIColor.black.withAlphaComponent(0.1)
+        cell.titleLabel?.textAlignment = titleAlignment ?? .left
+        
         let index:Int = indexPath.row % (self.titles?.count)!
         if let _imageStrs = imageStrs {
             if index < _imageStrs.count {
