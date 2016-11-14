@@ -5,6 +5,12 @@ WXCycleScrollView is a scrollable image banner using Swift
 * iOS 10.0 or later
 * Swift 3.0
 
+# Installation
+WXCycleScrollView can be installed using CocoaPods.Add following to your Podfile.
+```
+pod 'WXCycleScrollView', '~> 1.2.0'
+```
+
 # Usage
 Instance WXCycleScrollView and set WXCycleScrollViewDelegate,set images by setting property images,set web image by setting imageUrlStrs,and set titles by setting titles.
 ```
@@ -13,7 +19,7 @@ Instance WXCycleScrollView and set WXCycleScrollViewDelegate,set images by setti
     cycleScrollView?.imageStrs = imageStrs
     cycleScrollView?.titles = titles
 ```
-Implement func in WXCycleScrollViewDelegate to deal the click event on image
+Implement func in WXCycleScrollViewDelegate to deal with the click event on image.
 ``` 
     func cycleScrollView(_ cycleScrollView: WXCycleScrollView, didSelectAt index: Int) {
         //your code
