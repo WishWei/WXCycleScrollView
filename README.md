@@ -1,6 +1,7 @@
 # WXCycleScrollView
 WXCycleScrollView is a scrollable image banner using Swift
 
+![screenshot](http://upload-images.jianshu.io/upload_images/1792565-9663cc87b634bd81.gif?imageMogr2/auto-orient/strip)
 # Requirements
 * iOS 10.0 or later
 * Swift 3.0
