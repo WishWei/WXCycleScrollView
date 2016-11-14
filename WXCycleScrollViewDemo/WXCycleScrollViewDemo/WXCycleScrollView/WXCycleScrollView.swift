@@ -14,19 +14,19 @@ import SDWebImage
     @objc optional func cycleScrollView(_ cycleScrollView: WXCycleScrollView, didSelectAt index: Int)
 }
 
-class WXCycleScrollView: UIView, UICollectionViewDelegate, UICollectionViewDataSource {
+public class WXCycleScrollView: UIView, UICollectionViewDelegate, UICollectionViewDataSource {
     private let baseNum:Int = 100
-    var scrollInterval:Double = 5
-    var autoScroll:Bool = true {
+    public var scrollInterval:Double = 5
+    public var autoScroll:Bool = true {
         didSet{
             timer?.invalidate()
             timer = nil
-            if autoScroll {   
+            if autoScroll {
                 configTimer()
             }
         }
     }
-    var imageStrs:[String]? {
+    public var imageStrs:[String]? {
         didSet{
             if let _ = imageStrs{
                 images = nil
@@ -41,7 +41,7 @@ class WXCycleScrollView: UIView, UICollectionViewDelegate, UICollectionViewDataS
             
         }
     }
-    var images:[UIImage]? {
+    public var images:[UIImage]? {
         didSet{
             if let _ = images{
                 imageStrs = nil
@@ -56,7 +56,7 @@ class WXCycleScrollView: UIView, UICollectionViewDelegate, UICollectionViewDataS
         }
     }
     
-    var titles:[String]? {
+    public var titles:[String]? {
         didSet{
             if let count = titles?.count {
                 pageControl?.numberOfPages = count
@@ -67,22 +67,22 @@ class WXCycleScrollView: UIView, UICollectionViewDelegate, UICollectionViewDataS
         }
     }
     var collectionView:UICollectionView?
-    var pageControl:UIPageControl?
+    public var pageControl:UIPageControl?
     
     var timer:Timer?
     weak var delegate: WXCycleScrollViewDelegate?
     
-    var titleColor:UIColor?
-    var titleFont:UIFont?
-    var titleBackgroundColor:UIColor?
-    var titleAlignment:NSTextAlignment?
+    public var titleColor:UIColor?
+    public var titleFont:UIFont?
+    public var titleBackgroundColor:UIColor?
+    public var titleAlignment:NSTextAlignment?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         configView()
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         configView()
     }
@@ -123,7 +123,7 @@ class WXCycleScrollView: UIView, UICollectionViewDelegate, UICollectionViewDataS
         })
     }
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if let count = titles?.count {
             return count * baseNum
         }
@@ -132,7 +132,7 @@ class WXCycleScrollView: UIView, UICollectionViewDelegate, UICollectionViewDataS
     
     
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell:WXCycleScrollCell! = collectionView.dequeueReusableCell(withReuseIdentifier: "WXCycleScrollCell", for: indexPath) as! WXCycleScrollCell
         cell.titleLabel?.textColor = titleColor ?? UIColor.white
         cell.titleLabel?.font = titleFont ?? UIFont.systemFont(ofSize: 16)
@@ -149,19 +149,19 @@ class WXCycleScrollView: UIView, UICollectionViewDelegate, UICollectionViewDataS
                 cell.imageView?.image = _images[index]
             }
         }
-
+        
         if let title = titles?[index] {
             cell.titleLabel?.text = title
         }
         return cell
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let index = indexPath.row % (self.titles?.count)!
         delegate?.cycleScrollView?(self, didSelectAt: index)
     }
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView == collectionView {
             var page:Int! = Int(Float(scrollView.contentOffset.x + 0.5*(collectionView?.bounds.width)!) / Float((collectionView?.bounds.width)!))
             page = page % (self.titles?.count)!
@@ -170,14 +170,14 @@ class WXCycleScrollView: UIView, UICollectionViewDelegate, UICollectionViewDataS
         
     }
     
-    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+    public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         if(autoScroll){
             timer?.invalidate()
             timer = nil
         }
     }
     
-    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+    public func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         if(autoScroll){
             timer?.invalidate()
             timer = nil
