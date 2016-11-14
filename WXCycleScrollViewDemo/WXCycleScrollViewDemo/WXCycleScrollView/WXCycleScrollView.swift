@@ -9,9 +9,16 @@
 import UIKit
 import SDWebImage
 
-@objc protocol WXCycleScrollViewDelegate : NSObjectProtocol {
-    //点击第index张图片
-    @objc optional func cycleScrollView(_ cycleScrollView: WXCycleScrollView, didSelectAt index: Int)
+public protocol WXCycleScrollViewDelegate{
+    //click image at index
+    func cycleScrollView(_ cycleScrollView: WXCycleScrollView, didSelectAt index: Int)
+}
+
+extension WXCycleScrollViewDelegate {
+    //click image at index
+    func cycleScrollView(_ cycleScrollView: WXCycleScrollView, didSelectAt index: Int){
+    
+    }
 }
 
 public class WXCycleScrollView: UIView, UICollectionViewDelegate, UICollectionViewDataSource {
@@ -26,6 +33,7 @@ public class WXCycleScrollView: UIView, UICollectionViewDelegate, UICollectionVi
             }
         }
     }
+    //url string array of images
     public var imageStrs:[String]? {
         didSet{
             if let _ = imageStrs{
@@ -41,6 +49,7 @@ public class WXCycleScrollView: UIView, UICollectionViewDelegate, UICollectionVi
             
         }
     }
+    //array of images
     public var images:[UIImage]? {
         didSet{
             if let _ = images{
@@ -70,14 +79,14 @@ public class WXCycleScrollView: UIView, UICollectionViewDelegate, UICollectionVi
     public var pageControl:UIPageControl?
     
     var timer:Timer?
-    weak var delegate: WXCycleScrollViewDelegate?
+    public var delegate: WXCycleScrollViewDelegate?
     
     public var titleColor:UIColor?
     public var titleFont:UIFont?
     public var titleBackgroundColor:UIColor?
     public var titleAlignment:NSTextAlignment?
     
-    override init(frame: CGRect) {
+    override public init(frame: CGRect) {
         super.init(frame: frame)
         configView()
     }
@@ -158,7 +167,7 @@ public class WXCycleScrollView: UIView, UICollectionViewDelegate, UICollectionVi
     
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let index = indexPath.row % (self.titles?.count)!
-        delegate?.cycleScrollView?(self, didSelectAt: index)
+        delegate?.cycleScrollView(self, didSelectAt: index)
     }
     
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {

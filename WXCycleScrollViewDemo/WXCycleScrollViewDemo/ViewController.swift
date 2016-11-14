@@ -56,5 +56,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         return cell!
     }
     
+    func cycleScrollView(_ cycleScrollView: WXCycleScrollView, didSelectAt index: Int) {
+        print("image \(index) clicked")
+    }
+    
     
 }
