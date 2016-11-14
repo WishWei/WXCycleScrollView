@@ -29,7 +29,7 @@ class WXCycleScrollCell: UICollectionViewCell {
         titleBackgroundView = UIView.init(frame: CGRect(x: 0, y: bounds.height - 60, width: bounds.width - 0, height: 40))
         contentView.addSubview(titleBackgroundView!)
         
-        titleLabel = UILabel.init(frame: CGRect(x: 0, y: 0, width: titleBackgroundView!.bounds.width - 0, height: titleBackgroundView!.bounds.height))
+        titleLabel = UILabel.init(frame: CGRect(x: 10, y: 0, width: titleBackgroundView!.bounds.width - 20, height: titleBackgroundView!.bounds.height))
         titleLabel!.numberOfLines = 2
         titleBackgroundView!.addSubview(titleLabel!)
         
